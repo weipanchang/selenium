@@ -10,7 +10,6 @@ import time
 class PingShow_test(unittest.TestCase):
      def setUp(self):
           self.url =  "http://99.43.90.10/login_page"
-
           # create a new Firefox session
           self.driver = webdriver.Firefox()
           self.driver.implicitly_wait(30)
@@ -27,20 +26,24 @@ class PingShow_test(unittest.TestCase):
                if elm.get_attribute('href') == "http://99.43.90.10/login_page/login.php":
                     elm.click()
                     self.url = elm.get_attribute('href')
-                    print self.url
+#                    print self.url
+                    time.sleep(5.5)
                     break
 #          self.driver.get(self.url)
           self.assertIn('Login', self.driver.title)
-          time.sleep(5.5)
+#          time.sleep(5.5)
 #         self.driver.get(self.url)
           username = self.driver.find_element_by_id("username")
           password = self.driver.find_element_by_id("password")
           username.send_keys("wchang")
           password.send_keys("Lonna821")
-          login_attempt = self.driver.find_element_by_xpath("//*[@type='submit']")
+          # login_attempt = self.driver.find_element_by_xpath("//*[@type='submit']")
+          # login_attempt.submit()
+          login_attempt = self.driver.find_element_by_name("Submit")
           login_attempt.submit()
           time.sleep(5.5)
           print self.driver.current_url
+          self.assertIn('Home page', self.driver.title)
           
    
      def tearDown(self):
