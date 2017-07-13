@@ -251,3 +251,348 @@
 1499633348090	Marionette	INFO	New connections will no longer be accepted
 [GFX1-]: Receive IPC close with reason=AbnormalShutdown
 [Child 7500] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499639537604	geckodriver	INFO	Listening on 127.0.0.1:57506
+1499639538667	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:7954): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:7954): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:7954): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:7954): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499639540531	Marionette	INFO	Listening on port 51765
+1499639540630	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8000): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8000): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8000): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8000): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499639568637	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8000] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499639939876	geckodriver	INFO	Listening on 127.0.0.1:54418
+1499639940929	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:8109): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8109): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8109): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8109): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499639942335	Marionette	INFO	Listening on port 56568
+1499639942395	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8165): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8165): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8165): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8165): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499639975401	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8165] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499640066277	geckodriver	INFO	Listening on 127.0.0.1:46126
+1499640067329	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:8210): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8210): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8210): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8210): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640068688	Marionette	INFO	Listening on port 41071
+1499640068796	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8256): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8256): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8256): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8256): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640101739	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8256] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499640297773	geckodriver	INFO	Listening on 127.0.0.1:54477
+1499640298824	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:8348): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8348): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8348): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8348): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640300229	Marionette	INFO	Listening on port 42543
+1499640300289	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8394): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8394): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8394): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8394): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640333285	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8394] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499640352513	geckodriver	INFO	Listening on 127.0.0.1:51120
+1499640353566	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:8440): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8440): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8440): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8440): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640354979	Marionette	INFO	Listening on port 45574
+1499640355027	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8486): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8486): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8486): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8486): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640387969	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8486] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499640582654	geckodriver	INFO	Listening on 127.0.0.1:42268
+1499640583707	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:8535): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8535): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8535): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8535): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640585120	Marionette	INFO	Listening on port 50304
+1499640585203	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8581): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8581): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8581): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8581): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640618212	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8581] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499640845847	geckodriver	INFO	Listening on 127.0.0.1:54291
+1499640846900	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:8714): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8714): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8714): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8714): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640849815	Marionette	INFO	Listening on port 49845
+
+(/usr/lib/firefox/firefox:8760): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8760): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640850019	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8760): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8760): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640887734	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8760] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499640900262	geckodriver	INFO	Listening on 127.0.0.1:44214
+1499640901441	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:8815): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8815): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8815): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8815): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640903983	Marionette	INFO	Listening on port 33030
+
+(/usr/lib/firefox/firefox:8862): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8862): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640904074	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8862): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8862): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499640939817	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8862] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499641004034	geckodriver	INFO	Listening on 127.0.0.1:53490
+1499641005059	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:8919): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8919): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8919): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8919): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499641007122	Marionette	INFO	Listening on port 45397
+1499641007261	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:8965): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8965): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8965): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:8965): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499641042699	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8965] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499641069722	geckodriver	INFO	Listening on 127.0.0.1:47882
+1499641070772	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:9016): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:9016): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:9016): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:9016): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499641072170	Marionette	INFO	Listening on port 51336
+1499641072239	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:9062): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9062): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9062): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9062): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499641107919	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9062] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499641303656	geckodriver	INFO	Listening on 127.0.0.1:57664
+1499641304770	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:9165): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:9165): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:9165): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:9165): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499641307138	Marionette	INFO	Listening on port 35079
+1499641307232	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:9210): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9210): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9210): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9210): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499641342829	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9210] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499641722412	geckodriver	INFO	Listening on 127.0.0.1:44454
+1499641723464	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:9280): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:9280): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:9280): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:9280): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499641724752	Marionette	INFO	Listening on port 40543
+1499641724825	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:9326): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9326): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9326): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9326): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499641760286	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9326] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499642414943	geckodriver	INFO	Listening on 127.0.0.1:53075
+1499642415994	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:9406): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:9406): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:9406): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:9406): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499642417524	Marionette	INFO	Listening on port 45532
+
+(/usr/lib/firefox/firefox:9452): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9452): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9452): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:9452): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499642417636	Marionette	WARN	TLS certificate errors will be ignored for this session
+1499642453103	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9452] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499783931031	geckodriver	INFO	Listening on 127.0.0.1:39134
+1499783932074	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:10059): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:10059): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:10059): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:10059): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499783934392	Marionette	INFO	Listening on port 48541
+1499783934661	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:10105): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:10105): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:10105): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:10105): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499783971228	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 10105] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1499973901277	geckodriver	INFO	Listening on 127.0.0.1:38039
+1499973902335	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+
+(firefox:10193): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:10193): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:10193): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:10193): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499973903859	Marionette	INFO	Listening on port 39302
+1499973903979	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:10239): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:10239): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:10239): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(/usr/lib/firefox/firefox:10239): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1499973941127	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 10239] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3dApU_/firefox-53.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
