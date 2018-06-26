@@ -13,7 +13,6 @@ from selenium.common.exceptions import TimeoutException
 import time
 from bs4 import BeautifulSoup as bs
 from selenium import webdriver
-
 def get_historical_data(name):
     stock_name = name
 #    url = "https://finance.yahoo.com/quote/AMZN?p=AMZN&.tsrc=fin-srch"    
@@ -32,73 +31,49 @@ def get_historical_data(name):
     except TimeoutException:
         print "Loading took too much time!"
         print "Page loading is done"
-    time.sleep(.5)
-    print "Finding tag span Done"
+    time.sleep(5.5)
+    print "Finding tag span"
     elm_lists = driver.find_elements_by_tag_name("span")
-    
+    print "Finding tag span Done"
     for elm in elm_lists:
-        try:        
 #               print elm.get_attribute('href'), elm.text
-            if elm.text == "Historical Data":
-                print "Found!!"
+            if elm.get_attribute("data-reactid") == "38":
+                print "Found History Data!!"
                 print elm.text
                 elm.click()
 #                    print self.url
-                time.sleep(2.5)
+                time.sleep(5.5)
                 len_of_input_elm = 0
                 while len_of_input_elm < 5:
                     input_elm_lists = driver.find_elements_by_tag_name("input")
                     len_of_input_elm = len(input_elm_lists)
-                print len(input_elm_lists)
+                print "input_elm_list: " + str(len(input_elm_lists))
                 for input_elm in input_elm_lists:
                      if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
                          print "find right input tag"
                          print input_elm.get_attribute("data-test")
                          input_elm.click()
-                         time.sleep(2.5)
+                         time.sleep(.5)
                          elm = driver.find_element_by_name("startDate")
                          print "Found startDate"
-                         elm.clear()
-                         elm.send_keys("6/25/2012")
                          elm = driver.find_element_by_name("endDate")
                          print "Found endDate"
-                         elm.clear()
-                         elm.send_keys("6/25/2015")
                          break
                 button_elm_lists = driver.find_elements_by_tag_name("button")
                 print len(button_elm_lists)
                 for button_elm in button_elm_lists:
                         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
                             print "Found Done"
-                            button_elm.click()
-                            time.sleep(5.5)                
-#                         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-#                             print "Found Apply"
-#                             button_elm.click()
-#                             time.sleep(5.5)                
-# #                    print input_elm.get_attribute("class")
-#                             break
+                        if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
+                            print "Found Apply"
+#                    print input_elm.get_attribute("class")
                             break
-        except:
-            pass
-    button_elm_lists = driver.find_elements_by_tag_name("button") 
-    for button_elm in button_elm_lists:
-        if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-            print "Found Apply"
-            button_elm.click()
-            time.sleep(5.5)                
-    #                   print input_elm.get_attribute("class")
-            break
-    a_elm_lists = driver.find_elements_by_tag_name("a")
-    for a_elm in a_elm_lists:
-        if a_elm.get_attribute("class") == "Fl(end) Mt(3px) Cur(p)":
-            print "Found download"
-            url = a_elm.get_attribute('href')
-            print url
-            break
-    driver.get(url)
-    
-get_historical_data('amzn')     
+                break
+            a_elm_lists = driver.find_elements_by_tag_name("a")
+            for a_elm in a_elm_lists:
+                if a_elm.get_attribute("class") == "Fl(end) Mt(3px) Cur(p)":
+                            print "Found download"
+                            break        
 #            print "Not Found"
     
 #    rows = bs(urllib2.urlopen(url).read(), 'lxml').findAll('table')[0].tbody.findAll('tr')
@@ -189,6 +164,6 @@ get_historical_data('amzn')
 #      
 #     rows = page.body.findAll("input", {"data-test","date-picker-full-range"})
 #     print rows
-
+get_historical_data('amzn')
 
 #data-test="date-picker-full-range"
