@@ -10,6 +10,7 @@ from selenium import webdriver
 #from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+#from selenium.webdriver.support.ui import WebDriverWait
 import time
 from bs4 import BeautifulSoup as bs
 from selenium import webdriver
@@ -25,48 +26,55 @@ def get_historical_data(name):
     webdriver.FirefoxProfile().set_preference("browser.helperApps.neverAsk.saveToDisk", "text/csv")
     webdriver.FirefoxProfile().set_preference("browser.download.dir", "~/Downloads")
 #    url = "http://finance.yahoo.com/quote/AMZN/history?p=AMZN"    
+ 
     try:
         driver.get(url)
-#        delay = 3
-        print "Page is ready!"
+#        print "Page is ready!"
     except TimeoutException:
-        print "Loading took too much time!"
+ #       print "Loading took too much time!"
         print "Page loading is done"
     time.sleep(.5)
     print "Finding tag span Done"
-    elm_lists = driver.find_elements_by_tag_name("span")
+    button_elm_lists = driver.find_elements_by_tag_name("button")
+    for button_elm in button_elm_lists:
+        try:
+            if button_elm.get_attribute("class") == "Bd(0) P(0) O(n):f D(ib) Fz(s) Fl(end) Mt(6px) Mend(8px) close":
+                button_elm.click()
+                break
+        except:
+            pass
     
+    elm_lists = driver.find_elements_by_tag_name("span")
     for elm in elm_lists:
         try:        
 #               print elm.get_attribute('href'), elm.text
             if elm.text == "Historical Data":
-                print "Found!!"
-                print elm.text
+                print "Found Historical Data Button"
+#                print elm.text
                 elm.click()
-#                    print self.url
                 time.sleep(2.5)
                 len_of_input_elm = 0
                 while len_of_input_elm < 5:
                     input_elm_lists = driver.find_elements_by_tag_name("input")
                     len_of_input_elm = len(input_elm_lists)
-                print len(input_elm_lists)
+#                print len(input_elm_lists)
                 for input_elm in input_elm_lists:
                      if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
                          print "find right input tag"
-                         print input_elm.get_attribute("data-test")
+#                         print input_elm.get_attribute("data-test")
                          input_elm.click()
                          time.sleep(2.5)
                          elm = driver.find_element_by_name("startDate")
-                         print "Found startDate"
+                         print "Input startDate"
                          elm.clear()
                          elm.send_keys("6/25/2012")
                          elm = driver.find_element_by_name("endDate")
-                         print "Found endDate"
+                         print "Input endDate"
                          elm.clear()
                          elm.send_keys("6/25/2015")
                          break
                 button_elm_lists = driver.find_elements_by_tag_name("button")
-                print len(button_elm_lists)
+#                print len(button_elm_lists)
                 for button_elm in button_elm_lists:
                         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
                             print "Found Done"
@@ -84,7 +92,7 @@ def get_historical_data(name):
     button_elm_lists = driver.find_elements_by_tag_name("button") 
     for button_elm in button_elm_lists:
         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-            print "Found Apply"
+            print "Click at  Apply"
             button_elm.click()
             time.sleep(5.5)                
     #                   print input_elm.get_attribute("class")
@@ -92,12 +100,11 @@ def get_historical_data(name):
     a_elm_lists = driver.find_elements_by_tag_name("a")
     for a_elm in a_elm_lists:
         if a_elm.get_attribute("class") == "Fl(end) Mt(3px) Cur(p)":
-            print "Found download"
+            print "get download link"
             url = a_elm.get_attribute('href')
             print url
             break
     driver.get(url)
-    
 get_historical_data('amzn')     
 #            print "Not Found"
     
@@ -127,7 +134,7 @@ get_historical_data('amzn')
 #                 children = div.findChildren()
 #                 for child in children:
 #                     if child.name =='span':
-#                         children2  = child.findChildren()   
+#                         children2  = from selenium.webdriver.support.ui import WebDriverWaitchild.findChildren()   
 #                         for child2 in children2:
 #                             if child2.name =='span':
 #                                 print child2.prettify()
