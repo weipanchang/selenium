@@ -21,11 +21,7 @@ from selenium import webdriver
 def get_historical_data(name):
     stock_name = name
     downloadPath = '/home/wchang/Downloads/data'
-#    url = "https://finance.yahoo.com/quote/AMZN?p=AMZN&.tsrc=fin-srch"    
     url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
-#    driver = webdriver.Firefox(executable_path="/usr/bin/geckodriver")
-#    driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver")
-#    webdriver.FirefoxProfile()
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.download.folderList", 2)
     profile.set_preference("browser.download.manager.showWhenStarting", False)
@@ -41,32 +37,17 @@ def get_historical_data(name):
     desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
     desiredCapabilities['firefox_profile'] = profile.encoded
     driver = webdriver.Firefox(capabilities=desiredCapabilities)
-    # firefoxProfile = webdriver.FirefoxProfile()  
-    # firefoxProfile.set_preference("browser.download.folderList",2)
-    # firefoxProfile.set_preference("browser.download.manager.showWhenStarting", False)
-    # firefoxProfile.set_preference("browser.download.manager.showAlertOnComplete", False)
-    # firefoxProfile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/force-download")
-    # firefoxProfile.set_preference("browser.download.dir", "~/Downloads")
-    # firefoxProfile.update_preferences()
-    # driver = webdriver.Firefox(firefox_profile="/tmp/tmpAtsIRF", executable_path="/usr/bin/geckodriver")
-    # print driver.firefox_profile.path
-    #webdriver.FirefoxProfile().set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
-    
-    # options = Options();
-    # options.set_preference("browser.download.folderList",1);
-    # options.set_preference("browser.download.manager.showWhenStarting", False);
-    # options.set_preference("browser.download.dir","~/Downloads");
-    # options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/csv");
-    # driver = webdriver.Firefox(executable_path="/usr/bin/geckodriver", firefox_options=options);
 
     try:
         driver.get(url)
-#        print "Page is ready!"
     except TimeoutException:
- #       print "Loading took too much time!"
-        print "Page loading is done"
+        pass
+
+    print "Page is loaded"
     time.sleep(2.5)
-#    print "Finding tag span Done"
+
+#   close buy sell dialog box if presented
+
     button_elm_lists = driver.find_elements_by_tag_name("button")
     for button_elm in button_elm_lists:
         try:
@@ -79,65 +60,67 @@ def get_historical_data(name):
     elm_lists = driver.find_elements_by_tag_name("span")
     for elm in elm_lists:
         try:        
-#               print elm.get_attribute('href'), elm.text
             if elm.text == "Historical Data":
                 print "Found Historical Data Button"
-#                print elm.text
                 elm.click()
                 time.sleep(2.5)
                 len_of_input_elm = 0
+
                 while len_of_input_elm < 5:
                     input_elm_lists = driver.find_elements_by_tag_name("input")
                     len_of_input_elm = len(input_elm_lists)
-#                print len(input_elm_lists)
+
                 for input_elm in input_elm_lists:
                      if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
+
                          print "find right input tag"
-#                         print input_elm.get_attribute("data-test")
                          input_elm.click()
                          time.sleep(2.5)
+
                          elm = driver.find_element_by_name("startDate")
                          print "Input startDate"
                          elm.clear()
                          elm.send_keys("6/25/2012")
+
                          elm = driver.find_element_by_name("endDate")
                          print "Input endDate"
                          elm.clear()
-                         elm.send_keys("6/25/2015")
+                         elm.send_keys("6/25/2018")
                          break
                 button_elm_lists = driver.find_elements_by_tag_name("button")
-#                print len(button_elm_lists)
+
                 for button_elm in button_elm_lists:
                         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
-                            print "Found Done"
+#                            print "Click at Done"
                             button_elm.click()
-                            time.sleep(2.5)                
-      
-# #                    print input_elm.get_attribute("class")
-#                             break
+                            time.sleep(1)                
                             break
-            button_elm_lists = driver.find_elements_by_tag_name("button")
-            for button_elm in button_elm_lists:
-                if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-                    print "Found Apply"
-                    button_elm.click()
-                    time.sleep(5.5)
-                    break
+
         except:
             pass
+ #   Click at Apply
+    button_elm_lists = driver.find_elements_by_tag_name("button")
+    for button_elm in button_elm_lists:
+        if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
+            print "Clikc at Apply"
+            button_elm.click()
+            time.sleep(2)
+            break
     a_elm_lists = driver.find_elements_by_tag_name("a")
     for a_elm in a_elm_lists:
         if a_elm.get_attribute("class") == "Fl(end) Mt(3px) Cur(p)":
             print "get download link"
-            url = a_elm.get_attribute('href')
-            print url
+            # url = a_elm.get_attribute('href')
+            # print url
             a_elm.click()
             break
 #    driver.get(url)
 #    driver.find_element(By.LINK_TEXT, 'smilechart.xls').click()
     time.sleep(2)
     driver.close()
-get_historical_data('amzn')     
+get_historical_data('amzn')
+get_historical_data('adbe')
+driver.quit()
 #     button_elm_lists = driver.find_elements_by_tag_name("button") 
 #     for button_elm in button_elm_lists:
 #         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
