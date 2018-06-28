@@ -99,7 +99,7 @@ class get_historical_data():
                             if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
                                 print "Click at Done"
                                 button_elm.click()
-                                time.sleep(1)                
+                                time.sleep(6)                
                                 break
     
             except:
@@ -110,7 +110,7 @@ class get_historical_data():
             if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
                 print "Clikc at Apply"
                 button_elm.click()
-                time.sleep(2)
+                time.sleep(1)
                 break
         a_elm_lists = driver.find_elements_by_tag_name("a")
         for a_elm in a_elm_lists:
@@ -125,12 +125,15 @@ class get_historical_data():
         time.sleep(2)
         driver.quit()
 
-if __name__ == "__main__":
+def main():
     startDate = '6/28/2005'
     endDate = '6/28/2018'
     downloadPath = '/home/wchang/Downloads/data'
  
-    get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
+#    get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
     get_stock_data = get_historical_data("adbe", startDate, endDate, downloadPath)
-    get_stock_data = get_historical_data("aapl", startDate, endDate, downloadPath)
-    get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)   
+#    get_stock_data = get_historical_data("aapl", startDate, endDate, downloadPath)
+#    get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)       
+
+if __name__ == "__main__":
+    main()
