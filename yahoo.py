@@ -18,10 +18,27 @@ import time
 from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 
-def get_historical_data(name):
-    stock_name = name
+# downloadPath = '/home/wchang/Downloads/data'
+# 
+# profile = webdriver.FirefoxProfile()
+# profile.set_preference("browser.download.folderList", 2)
+# profile.set_preference("browser.download.manager.showWhenStarting", False)
+# profile.set_preference("browser.download.dir", downloadPath)
+# profile.set_preference("browser.helperApps.neverAsk.openFile", "text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml")
+# profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml")
+# profile.set_preference("browser.helperApps.alwaysAsk.force", False)
+# profile.set_preference("browser.download.manager.alertOnEXEOpen", False)
+# profile.set_preference("browser.download.manager.focusWhenStarting", False)
+# profile.set_preference("browser.download.manager.useWindow", False)
+# profile.set_preference("browser.download.manager.showAlertOnComplete", False)
+# profile.set_preference("browser.download.manager.closeWhenDone", False)
+# desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
+# desiredCapabilities['firefox_profile'] = profile.encoded
+# driver = webdriver.Firefox(capabilities=desiredCapabilities)
+
+def get_historical_data(stock_name, startDate, endDate):
+    print "Get stock history data: " + stock_name.upper() + "   from " + startDate + " to " + endDate
     downloadPath = '/home/wchang/Downloads/data'
-    url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.download.folderList", 2)
     profile.set_preference("browser.download.manager.showWhenStarting", False)
@@ -37,14 +54,14 @@ def get_historical_data(name):
     desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
     desiredCapabilities['firefox_profile'] = profile.encoded
     driver = webdriver.Firefox(capabilities=desiredCapabilities)
-
+    url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
     try:
         driver.get(url)
     except TimeoutException:
         pass
 
     print "Page is loaded"
-    time.sleep(2.5)
+    time.sleep(1)
 
 #   close buy sell dialog box if presented
 
@@ -63,7 +80,7 @@ def get_historical_data(name):
             if elm.text == "Historical Data":
                 print "Found Historical Data Button"
                 elm.click()
-                time.sleep(2.5)
+                time.sleep(1)
                 len_of_input_elm = 0
 
                 while len_of_input_elm < 5:
@@ -75,17 +92,17 @@ def get_historical_data(name):
 
                          print "find right input tag"
                          input_elm.click()
-                         time.sleep(2.5)
+                         time.sleep(1)
 
                          elm = driver.find_element_by_name("startDate")
                          print "Input startDate"
                          elm.clear()
-                         elm.send_keys("6/25/2012")
+                         elm.send_keys(startDate)
 
                          elm = driver.find_element_by_name("endDate")
                          print "Input endDate"
                          elm.clear()
-                         elm.send_keys("6/25/2018")
+                         elm.send_keys(endDate)
                          break
                 button_elm_lists = driver.find_elements_by_tag_name("button")
 
@@ -117,10 +134,15 @@ def get_historical_data(name):
 #    driver.get(url)
 #    driver.find_element(By.LINK_TEXT, 'smilechart.xls').click()
     time.sleep(2)
-    driver.close()
-get_historical_data('amzn')
-get_historical_data('adbe')
-driver.quit()
+    driver.quit()
+
+startDate = '6/25/2005'
+endDate = '6/25/2018'
+
+get_historical_data('amzn', startDate, endDate)
+time.sleep(1)
+get_historical_data('adbe', startDate, endDate)
+#driver.quit()
 #     button_elm_lists = driver.find_elements_by_tag_name("button") 
 #     for button_elm in button_elm_lists:
 #         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
