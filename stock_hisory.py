@@ -38,11 +38,14 @@ class get_historical_data():
         profile.set_preference("browser.download.manager.useWindow", False)
         profile.set_preference("browser.download.manager.showAlertOnComplete", False)
         profile.set_preference("browser.download.manager.closeWhenDone", False)
+        profile.set_preference("browser.cache.disk.enable", False)
+        profile.set_preference("browser.cache.memory.enable", False)
+        profile.set_preference("browser.cache.offline.enable", False)
+        profile.set_preference("network.http.use-cache", False)
         desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
         desiredCapabilities['firefox_profile'] = profile.encoded
         driver = webdriver.Firefox(capabilities=desiredCapabilities)
-    
-    
+        driver.set_page_load_timeout(50)    
         url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
         try:
             driver.get(url)
@@ -83,18 +86,22 @@ class get_historical_data():
                              input_elm.click()
                              time.sleep(1)
     
-                             elm = driver.find_element_by_name("startDate")
-                             print "Input startDate"
-                             elm.clear()
-                             elm.send_keys(startDate)
-    
-                             elm = driver.find_element_by_name("endDate")
-                             print "Input endDate"
-                             elm.clear()
-                             elm.send_keys(endDate)
-                             break
+                             # elm = driver.find_element_by_name("startDate")
+                             # print "Input startDate"
+                             # elm.clear()
+                             # elm.send_keys(startDate)
+                             # 
+                             # elm = driver.find_element_by_name("endDate")
+                             # print "Input endDate"
+                             # elm.clear()
+                             # elm.send_keys(endDate)
+                             # break
+                    
+                    elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+                    print "click at max"
+                    elm.click()
+                    
                     button_elm_lists = driver.find_elements_by_tag_name("button")
-    
                     for button_elm in button_elm_lists:
                             if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
                                 print "Click at Done"
@@ -130,10 +137,10 @@ def main():
     endDate = '6/28/2018'
     downloadPath = '/home/wchang/Downloads/data'
  
-#    get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
+    get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
     get_stock_data = get_historical_data("adbe", startDate, endDate, downloadPath)
-#    get_stock_data = get_historical_data("aapl", startDate, endDate, downloadPath)
-#    get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)       
+    get_stock_data = get_historical_data("aapl", startDate, endDate, downloadPath)
+    get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)       
 
 if __name__ == "__main__":
     main()
