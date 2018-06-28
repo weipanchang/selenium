@@ -10,6 +10,9 @@ from selenium import webdriver
 #from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+#from selenium.webdriver.firefox.options import Options
 #from selenium.webdriver.support.ui import WebDriverWait
 import time
 from bs4 import BeautifulSoup as bs
@@ -17,24 +20,53 @@ from selenium import webdriver
 
 def get_historical_data(name):
     stock_name = name
+    downloadPath = '/home/wchang/Downloads/data'
 #    url = "https://finance.yahoo.com/quote/AMZN?p=AMZN&.tsrc=fin-srch"    
     url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
-    driver = webdriver.Firefox(executable_path="/usr/bin/geckodriver")
+#    driver = webdriver.Firefox(executable_path="/usr/bin/geckodriver")
+#    driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver")
 #    webdriver.FirefoxProfile()
-    webdriver.FirefoxProfile().set_preference("browser.download.manager.showWhenStarting", False)
-    webdriver.FirefoxProfile().set_preference("browser.download.manager.showAlertOnComplete", False)
-    webdriver.FirefoxProfile().set_preference("browser.helperApps.neverAsk.saveToDisk", "text/csv")
-    webdriver.FirefoxProfile().set_preference("browser.download.dir", "~/Downloads")
-#    url = "http://finance.yahoo.com/quote/AMZN/history?p=AMZN"    
- 
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference("browser.download.folderList", 2)
+    profile.set_preference("browser.download.manager.showWhenStarting", False)
+    profile.set_preference("browser.download.dir", downloadPath)
+    profile.set_preference("browser.helperApps.neverAsk.openFile", "text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml")
+    profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml")
+    profile.set_preference("browser.helperApps.alwaysAsk.force", False)
+    profile.set_preference("browser.download.manager.alertOnEXEOpen", False)
+    profile.set_preference("browser.download.manager.focusWhenStarting", False)
+    profile.set_preference("browser.download.manager.useWindow", False)
+    profile.set_preference("browser.download.manager.showAlertOnComplete", False)
+    profile.set_preference("browser.download.manager.closeWhenDone", False)
+    desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
+    desiredCapabilities['firefox_profile'] = profile.encoded
+    driver = webdriver.Firefox(capabilities=desiredCapabilities)
+    # firefoxProfile = webdriver.FirefoxProfile()  
+    # firefoxProfile.set_preference("browser.download.folderList",2)
+    # firefoxProfile.set_preference("browser.download.manager.showWhenStarting", False)
+    # firefoxProfile.set_preference("browser.download.manager.showAlertOnComplete", False)
+    # firefoxProfile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/force-download")
+    # firefoxProfile.set_preference("browser.download.dir", "~/Downloads")
+    # firefoxProfile.update_preferences()
+    # driver = webdriver.Firefox(firefox_profile="/tmp/tmpAtsIRF", executable_path="/usr/bin/geckodriver")
+    # print driver.firefox_profile.path
+    #webdriver.FirefoxProfile().set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+    
+    # options = Options();
+    # options.set_preference("browser.download.folderList",1);
+    # options.set_preference("browser.download.manager.showWhenStarting", False);
+    # options.set_preference("browser.download.dir","~/Downloads");
+    # options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/csv");
+    # driver = webdriver.Firefox(executable_path="/usr/bin/geckodriver", firefox_options=options);
+
     try:
         driver.get(url)
 #        print "Page is ready!"
     except TimeoutException:
  #       print "Loading took too much time!"
         print "Page loading is done"
-    time.sleep(.5)
-    print "Finding tag span Done"
+    time.sleep(2.5)
+#    print "Finding tag span Done"
     button_elm_lists = driver.find_elements_by_tag_name("button")
     for button_elm in button_elm_lists:
         try:
@@ -79,123 +111,128 @@ def get_historical_data(name):
                         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
                             print "Found Done"
                             button_elm.click()
-                            time.sleep(5.5)                
-#                         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-#                             print "Found Apply"
-#                             button_elm.click()
-#                             time.sleep(5.5)                
+                            time.sleep(2.5)                
+      
 # #                    print input_elm.get_attribute("class")
 #                             break
                             break
+            button_elm_lists = driver.find_elements_by_tag_name("button")
+            for button_elm in button_elm_lists:
+                if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
+                    print "Found Apply"
+                    button_elm.click()
+                    time.sleep(5.5)
+                    break
         except:
             pass
-    button_elm_lists = driver.find_elements_by_tag_name("button") 
-    for button_elm in button_elm_lists:
-        if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-            print "Click at  Apply"
-            button_elm.click()
-            time.sleep(5.5)                
-    #                   print input_elm.get_attribute("class")
-            break
     a_elm_lists = driver.find_elements_by_tag_name("a")
     for a_elm in a_elm_lists:
         if a_elm.get_attribute("class") == "Fl(end) Mt(3px) Cur(p)":
             print "get download link"
             url = a_elm.get_attribute('href')
             print url
+            a_elm.click()
             break
-    driver.get(url)
+#    driver.get(url)
+#    driver.find_element(By.LINK_TEXT, 'smilechart.xls').click()
+    time.sleep(2)
+    driver.close()
 get_historical_data('amzn')     
-#            print "Not Found"
-    
-#    rows = bs(urllib2.urlopen(url).read(), 'lxml').findAll('table')[0].tbody.findAll('tr')
-#    page = bs(urllib2.urlopen(url).read(), 'lxml').find('body')
-    # for tag in page.findAll():
-    #     try:
-    #         if tag.attrs['data-value']=="YTD" :
-    #             print "found"            
-    #             key_list = list()
-    #             key_list.extend(list(tag.attrs))
-    #             print key_list
-    #             print tag.prettify()
-    #         # try:
-    #         #     if len(key_list)  ==0:
-    #             print tag.name
-    #     except:
-    #         pass
-#     for div in page.findAll():
-# #        if "data-reactid" in div.attrs.keys():
-# #            if div.attrs['data-reactid'] == '3':
-# #            try:
-# #                if div.attrs['class'] == "'Mt(15px)', 'drop-down-selector', 'historical'":
-#         try:
-#             if div.attrs.has_key('class') and div.attrs['class'][2] == 'historical':
-# #                print div.attrs['class']
-#                 children = div.findChildren()
-#                 for child in children:
-#                     if child.name =='span':
-#                         children2  = from selenium.webdriver.support.ui import WebDriverWaitchild.findChildren()   
-#                         for child2 in children2:
-#                             if child2.name =='span':
-#                                 print child2.prettify()
-#         except:
-#             pass
-    # for span in  page.findAll('span'):
-    #     for span2 in span.findAll('span'):
-    #         children =  span2.findChildren()
-    #         for child in children:
-    #             print child.name
-# for tag in tags:
-#     tags_keys = list()
-#     for line in htmlist:
-#         aux=BeautifulSoup(line, "html.parser").find(tag)
-#         if aux:
-#             tags_keys.extend(list(aux.attrs))
-#     print(tag+":"+",".join(sorted(set(tags_keys))))
-#    doc = rows.prettify()
-#    print doc.encode('utf-8')
-#    with open("python.txt",'a', encoding='utf-8') as inputfile:
-#        inputfile.write(doc)
-    # for j in rows.findAll('input'):
-    #     try: 
-    #         if j.find(attrs={"data-test" :"date-picker-full-range"}):
-    #             print "Found"
-    #     except:
-    #         pass
-        #         
-        # for tag in j.findAll():
-        #     print tag.name
-        # for k in j.findAll('input'):
-        #     try:
-        #         if k.findAll(attrs={"data-test":"date-picker-full-range"}):
-        #             print k
-        #     except:
-        #        pass
-#        for k in j.findAll('span'):
-#            for l in k.findAll(string =  'Time Period'):
-#                print l
-            
-    # for each_row in rows:
-    #     divs = each_row.findAll('td')
-    #     if divs[1].span.text  != 'Dividend': #Ignore this row in the table
-    #         #I'm only interested in 'Open' price; For other values, play with divs[1 - 5]
-    #         data.append({'Date': divs[0].span.text, 'Open': float(divs[1].span.text.replace(',',''))})
-    # 
-    # return data[:number_of_days]
-
-#Test
-# for i in get_historical_data('amzn', 5):
-#     print i
-
-# def get_historical_data(name, number_of_days):
-#     url = "https://finance.yahoo.com/quote/" + name + "/history/"
+#     button_elm_lists = driver.find_elements_by_tag_name("button") 
+#     for button_elm in button_elm_lists:
+#         if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
+#             print "Click at  Apply"
+#             button_elm.click()
+#             time.sleep(2.5)                
+#     #                   print input_elm.get_attribute("class")
+#             break
+#     url = driver.current_url
+#     print url
+#     table_elm_lists = driver.find_elements_by_tag_name("table")
+#     for table_elm in table_elm_lists:
+#         if table_elm.get_attribute("class") == "W(100%) M(0)":
+#  #           print  "find right table"
+#             tbody_elm = table_elm.find_element_by_tag_name("tbody")
+#             tr_elm  = driver.find_element_by_xpath("//tr[@class='BdT Bdc($c-fuji-grey-c) Ta(end) Fz(s) Whs(nw)']")
+# #            tr_elm  = driver.element_by_xpath("//p[@class='Py(10px) Pstart(10px)']/following-sibling::p")           
+# #            tr_elm_lists = tbody_elm.find_elements_by_tag_name("tr")
+# #            print "length of tr" + str(len(tr_elm_lists))
+#  #           for row_elm in tr_elm_lists:
+#             row_string="  "
+#             cell_elm_lists = tr_elm.find_elements_by_tag_name("td")
+# #                   print cell_elm.get_attribute("class")
+#             # for cell_elm in cell_elm_lists:
+#             #     row_string = row_string + " " + cell_elm.find_element_by_tag_name("span").text
+#             # print row_string
 # 
-#     page = bs(urllib2.urlopen(url).read(), 'lxml')
-#     tree = ET.parse(page)
+# #             tr_elm  = driver.find_element_by_xpath("//tr[@class='BdT Bdc($c-fuji-grey-c) Ta(end) Fz(s) Whs(nw)']/following-sibling::tr")
+# #             row_string="  "
+# #             for cell_elm in tr_elm.find_elements_by_tag_name("td"):
+# # #                   print cell_elm.get_attribute("class")
+# #                 row_string = row_string + " " + cell_elm.find_element_by_tag_name("span").text
+# #            print row_string
+#             
+#             for i in xrange(1,99):
+#                 
+#                 locator  = "//tr[@class='BdT Bdc($c-fuji-grey-c) Ta(end) Fz(s) Whs(nw)']/following-sibling::tr[" + str(i) + "]"
+#                 print i, locator
+#                 tr_elm  = driver.find_element_by_xpath(locator)
+#                 # time.sleep(2)
+#                 # tr_elm.click()
+#                 # time.sleep(2)
+#                 # tr_elm.send_keys(Keys.PAGE_DOWN)
+#                 # time.sleep(2)
+#                 row_string="  "
+#                 for cell_elm in tr_elm.find_elements_by_tag_name("td"):
+#     #                   print cell_elm.get_attribute("class")
+#                     row_string = row_string + " " + cell_elm.find_element_by_tag_name("span").text
+#                 print row_string
+# #            locator  = "//tr[@class='BdT Bdc($c-fuji-grey-c) Ta(end) Fz(s) Whs(nw)']/following-sibling::tr[" + str(99) + "]"
+# #            tr_elm = driver.find_element_by_xpath(locator)
+#             for i in xrange(1,99):
+# 
+#                 print i, locator
+#                 locator  = "//tr[@class='BdT Bdc($c-fuji-grey-c) Ta(end) Fz(s) Whs(nw)']/following-sibling::tr[99]/following-sibling::tr[" + str(i) + "]"
+#                 tr_elm  = driver.find_element_by_xpath(locator)
+#                 # time.sleep(2)
+#                 # tr_elm.click()
+#                 # time.sleep(2)
+#                 # tr_elm.send_keys(Keys.PAGE_DOWN)
+#                 # time.sleep(2)
+#                 row_string="  "
+#                 for cell_elm in tr_elm.find_elements_by_tag_name("td"):
+#     #                   print cell_elm.get_attribute("class")
+#                     row_string = row_string + " " + cell_elm.find_element_by_tag_name("span").text
+#                 print row_string
+#             
+#             break
+#             tr_elm  = driver.find_element_by_xpath("//tr[@class='BdT Bdc($c-fuji-grey-c) Ta(end) Fz(s) Whs(nw)']/following-sibling::tr[2]")
+#             row_string="  "
+#             for cell_elm in tr_elm.find_elements_by_tag_name("td"):
+# #                   print cell_elm.get_attribute("class")
+#                 row_string = row_string + " " + cell_elm.find_element_by_tag_name("span").text
+#             print row_string            
+    # try:
+    #     driver.get(url)
+    # except:
+    #     print "get url failed"
+    # time.sleep(5.5)
+    # try:
+    #     source = driver.page_source.get.text()
+    # except:
+    #     print "covert to source failed"
+    # print source.prettify()
+    # soup = BeautifulSoup(source, "html.parser")
+    # rows_total = soup.find("tbody").find_all("tr")
+    # for row in rows_total[1::]:
+    #     cells = row.findAll("td")
+    #     cell_string = ""
+    #     for cell in cells:
+    #         cell_string = cell + " " + cell_string
+    #     print cell_string
+            
+    
+            
+    #print soup.prettify()
+    
 
-#      
-#     rows = page.body.findAll("input", {"data-test","date-picker-full-range"})
-#     print rows
-
-
-#data-test="date-picker-full-range"
