@@ -26,12 +26,12 @@ class get_historical_data():
 #        self.startDate = startDate
 #        self.endDate = endDate
 #        print "Get stock history data: " + stock_name.upper() + "   from " + startDate + " to " + endDate
-        print "Get all stock history data: " + stock_name.upper() 
+        print "Get all stock history data: " + self.stock_name.upper() 
         self.downloadPath = downloadPath
         profile = webdriver.FirefoxProfile()
         profile.set_preference("browser.download.folderList", 2)
         profile.set_preference("browser.download.manager.showWhenStarting", False)
-        profile.set_preference("browser.download.dir", downloadPath)
+        profile.set_preference("browser.download.dir", self.downloadPath)
         profile.set_preference("browser.helperApps.neverAsk.openFile", "text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml")
         profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml")
         profile.set_preference("browser.helperApps.alwaysAsk.force", False)
@@ -47,8 +47,8 @@ class get_historical_data():
         desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
         desiredCapabilities['firefox_profile'] = profile.encoded
         driver = webdriver.Firefox(capabilities=desiredCapabilities)
-        driver.set_page_load_timeout(50)    
-        url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
+        driver.set_page_load_timeout(10)    
+        url = "https://finance.yahoo.com/quote/" + self.stock_name + "?p=" + self.stock_name + "&.tsrc=fin-srch"
         try:
             driver.get(url)
         except TimeoutException:
@@ -60,6 +60,7 @@ class get_historical_data():
     #   close buy sell dialog box if presented
     
         button_elm_lists = driver.find_elements_by_tag_name("button")
+                
         for button_elm in button_elm_lists:
             try:
                 if button_elm.get_attribute("class") == "Bd(0) P(0) O(n):f D(ib) Fz(s) Fl(end) Mt(6px) Mend(8px) close":
@@ -69,6 +70,7 @@ class get_historical_data():
                 pass
         
         elm_lists = driver.find_elements_by_tag_name("span")
+        print len(elm_lists)
         for elm in elm_lists:
             try:        
                 if elm.text == "Historical Data":
@@ -81,43 +83,45 @@ class get_historical_data():
                         input_elm_lists = driver.find_elements_by_tag_name("input")
                         len_of_input_elm = len(input_elm_lists)
     
-                    for input_elm in input_elm_lists:
-                         if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
+                    input_elm = input_elm_lists[4]
+#                         if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
     
-                             print "click at input button"
-                             input_elm.click()
-                             time.sleep(1)
+                    print "click at input button"
+                    input_elm.click()
+                    time.sleep(1)
                     
                     elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
                     print "click at max"
                     elm.click()
                     
-                    button_elm_lists = driver.find_elements_by_tag_name("button")
-                    for button_elm in button_elm_lists:
-                            if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
-                                print "click at Done"
-                                button_elm.click()
-                                time.sleep(6)                
-                                break
-    
+#                    button_elm_lists = driver.find_elements_by_tag_name("button")
+#                    for button_elm in button_elm_lists:
+                    button_elm = driver.find_element_by_xpath("//button[@class =' Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)' ]")
+                     #       if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
+                    print "click at Done"
+                    button_elm.click()
+                    time.sleep(6)                
+#                                break
+                    break
             except:
                 pass
+                
      #   Click at Apply
-        button_elm_lists = driver.find_elements_by_tag_name("button")
-        for button_elm in button_elm_lists:
-            if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-                print "clikc at Apply"
-                button_elm.click()
-                time.sleep(1)
-                break
-        a_elm_lists = driver.find_elements_by_tag_name("a")
-        for a_elm in a_elm_lists:
-            if a_elm.get_attribute("class") == "Fl(end) Mt(3px) Cur(p)":
-                print "click at download link"
-                # url = a_elm.get_attribute('href')
-                # print url
-                a_elm.click()
-                break
+#        button_elm_lists = driver.find_elements_by_tag_name("button")
+#        for button_elm in button_elm_lists:
+        button_elm = driver.find_element_by_xpath("//button[@class =' Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)']")
+        print "clikc at Apply"
+        button_elm.click()
+        time.sleep(1)
+#            break
+#        a_elm_lists = driver.find_elements_by_tag_name("a")
+ #       for a_elm in a_elm_lists:
+        a_elm = driver.find_element_by_xpath("//a[@class = 'Fl(end) Mt(3px) Cur(p)']")
+        print "click at download link"
+        # url = a_elm.get_attribute('href')
+        # print url
+        a_elm.click()
+#                break
     #    driver.get(url)
     #    driver.find_element(By.LINK_TEXT, 'smilechart.xls').click()
         time.sleep(2)
