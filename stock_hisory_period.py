@@ -98,7 +98,7 @@ class get_historical_data():
                         
                         elm = driver.find_element_by_name("startDate")
                         startDate_default =  elm.get_attribute("value")
-                        print startDate_default
+#                        print startDate_default
                         startDate1 = time.strptime(startDate_default , "%m/%d/%Y")
                         startDate2 = time.strptime(startDate , "%m/%d/%Y")
                         if (startDate1 < startDate2):
@@ -109,7 +109,7 @@ class get_historical_data():
                         
                         elm = driver.find_element_by_name("endDate")
                         endDate_default =  elm.get_attribute("value")
-                        print endDate_default
+#                        print endDate_default
                         endDate1 = time.strptime(endDate_default , "%m/%d/%Y")
                         endDate2 = time.strptime(endDate , "%m/%d/%Y")
                         if (endDate1 > endDate2):
@@ -174,8 +174,12 @@ def main():
 #    get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
 #    get_stock_data = get_historical_data("adbe", startDate, endDate, downloadPath)
 #    get_stock_data = get_historical_data("aapl", startDate, endDate, downloadPath)
-    get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)
- #   get_stock_data = get_historical_data("flws", startDate, endDate, downloadPath)    
+#    get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)
+ #   get_stock_data = get_historical_data("flws", startDate, endDate, downloadPath)
+    stock_name = raw_input("Please enter the Stock Symbol:   ")
+    startDate = raw_input("Please enter the Start Date (mm/dd/yyyy):   ")
+    endDate = raw_input("Please enter the Start Date (mm/dd/yyyy):   ")
+    get_stock_data = get_historical_data(stock_name, startDate, endDate, downloadPath)
 
 if __name__ == "__main__":
     main()
