@@ -20,8 +20,8 @@ from selenium import webdriver
 
 class get_historical_data():
 
-#    def __init__(self, stock_name, startDate, endDate, downloadPath):
-    def __init__(self, stock_name, downloadPath):
+    def __init__(self, stock_name, startDate, endDate, downloadPath):
+#    def __init__(self, stock_name, downloadPath):
         self.stock_name = stock_name
         self.startDate = startDate
         self.endDate = endDate
@@ -46,7 +46,7 @@ class get_historical_data():
         desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
         desiredCapabilities['firefox_profile'] = profile.encoded
         driver = webdriver.Firefox(capabilities=desiredCapabilities)
-        driver.set_page_load_timeout(50)    
+        driver.set_page_load_timeout(10)    
         url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
         try:
             driver.get(url)
@@ -87,20 +87,20 @@ class get_historical_data():
                              input_elm.click()
                              time.sleep(1)
     
-                             # elm = driver.find_element_by_name("startDate")
-                             # print "Input startDate"
-                             # elm.clear()
-                             # elm.send_keys(startDate)
-                             # 
-                             # elm = driver.find_element_by_name("endDate")
-                             # print "Input endDate"
-                             # elm.clear()
-                             # elm.send_keys(endDate)
-                             # break
+                             elm = driver.find_element_by_name("startDate")
+                             print "Input startDate"
+                             elm.clear()
+                             elm.send_keys(startDate)
+                             
+                             elm = driver.find_element_by_name("endDate")
+                             print "Input endDate"
+                             elm.clear()
+                             elm.send_keys(endDate)
+                             break
                     
-                    elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-                    print "click at max"
-                    elm.click()
+                    # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+                    # print "click at max"
+                    # elm.click()
                     
                     button_elm_lists = driver.find_elements_by_tag_name("button")
                     for button_elm in button_elm_lists:
@@ -109,7 +109,41 @@ class get_historical_data():
                                 button_elm.click()
                                 time.sleep(6)                
                                 break
+                    
+                    while len_of_input_elm < 5:
+                        input_elm_lists = driver.find_elements_by_tag_name("input")
+                        len_of_input_elm = len(input_elm_lists)
     
+                    for input_elm in input_elm_lists:
+                         if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
+    
+                             print "click at input button"
+                             input_elm.click()
+                             time.sleep(1)
+    
+                             elm = driver.find_element_by_name("startDate")
+                             print "Input startDate"
+                             elm.clear()
+                             elm.send_keys(startDate)
+                             
+                             elm = driver.find_element_by_name("endDate")
+                             print "Input endDate"
+                             elm.clear()
+                             elm.send_keys(endDate)
+                             break
+                    
+                    # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+                    # print "click at max"
+                    # elm.click()
+                    
+                    button_elm_lists = driver.find_elements_by_tag_name("button")
+                    for button_elm in button_elm_lists:
+                            if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
+                                print "Click at Done"
+                                button_elm.click()
+                                time.sleep(6)                
+                                break
+        
             except:
                 pass
      #   Click at Apply
@@ -137,17 +171,17 @@ def main():
 
     downloadPath = '/home/wchang/Downloads/data'
  
-    get_stock_data = get_historical_data("amzn",  downloadPath)
-    get_stock_data = get_historical_data("adbe",  downloadPath)
-    get_stock_data = get_historical_data("aapl",  downloadPath)
-    get_stock_data = get_historical_data("goog",  downloadPath)       
+    # get_stock_data = get_historical_data("amzn",  downloadPath)
+    # get_stock_data = get_historical_data("adbe",  downloadPath)
+    # get_stock_data = get_historical_data("aapl",  downloadPath)
+    # get_stock_data = get_historical_data("goog",  downloadPath)       
 
-#    startDate = '6/28/2005'
-#    endDate = '6/28/2018'
-    # get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
-    # get_stock_data = get_historical_data("adbe", startDate, endDate, downloadPath)
-    # get_stock_data = get_historical_data("aapl", startDate, endDate, downloadPath)
-    # get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)     
+    startDate = '6/28/2005'
+    endDate = '6/28/2018'
+#    get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
+    get_stock_data = get_historical_data("adbe", startDate, endDate, downloadPath)
+#    get_stock_data = get_historical_data("aapl", startDate, endDate, downloadPath)
+#    get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)     
 
 if __name__ == "__main__":
     main()

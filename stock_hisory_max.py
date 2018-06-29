@@ -20,12 +20,13 @@ from selenium import webdriver
 
 class get_historical_data():
 
-#    def __init__(self, stock_name, startDate, endDate, downloadPath):
+    #def __init__(self, stock_name, startDate, endDate, downloadPath):
     def __init__(self, stock_name, downloadPath):
         self.stock_name = stock_name
-        self.startDate = startDate
-        self.endDate = endDate
-        print "Get stock history data: " + stock_name.upper() + "   from " + startDate + " to " + endDate
+#        self.startDate = startDate
+#        self.endDate = endDate
+#        print "Get stock history data: " + stock_name.upper() + "   from " + startDate + " to " + endDate
+        print "Get all stock history data: " + stock_name.upper() 
         self.downloadPath = downloadPath
         profile = webdriver.FirefoxProfile()
         profile.set_preference("browser.download.folderList", 2)
@@ -105,7 +106,7 @@ class get_historical_data():
                     button_elm_lists = driver.find_elements_by_tag_name("button")
                     for button_elm in button_elm_lists:
                             if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
-                                print "Click at Done"
+                                print "click at Done"
                                 button_elm.click()
                                 time.sleep(6)                
                                 break
@@ -116,7 +117,7 @@ class get_historical_data():
         button_elm_lists = driver.find_elements_by_tag_name("button")
         for button_elm in button_elm_lists:
             if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-                print "Clikc at Apply"
+                print "clikc at Apply"
                 button_elm.click()
                 time.sleep(1)
                 break
@@ -137,13 +138,13 @@ def main():
 
     downloadPath = '/home/wchang/Downloads/data'
  
-    get_stock_data = get_historical_data("amzn",  downloadPath)
+ #   get_stock_data = get_historical_data("amzn",  downloadPath)
     get_stock_data = get_historical_data("adbe",  downloadPath)
-    get_stock_data = get_historical_data("aapl",  downloadPath)
-    get_stock_data = get_historical_data("goog",  downloadPath)       
+ #   get_stock_data = get_historical_data("aapl",  downloadPath)
+ #   get_stock_data = get_historical_data("goog",  downloadPath)       
 
-#    startDate = '6/28/2005'
-#    endDate = '6/28/2018'
+    # startDate = '6/28/2005'
+    # endDate = '6/28/2018'
     # get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
     # get_stock_data = get_historical_data("adbe", startDate, endDate, downloadPath)
     # get_stock_data = get_historical_data("aapl", startDate, endDate, downloadPath)
