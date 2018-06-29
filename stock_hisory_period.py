@@ -105,6 +105,8 @@ class get_historical_data():
                             print "Input startDate: " + startDate
                             elm.clear()
                             elm.send_keys(startDate)
+                        else:
+                            print "Out of data range! Will use default date as input: " + startDate_default
                         time.sleep(2)
                         
                         elm = driver.find_element_by_name("endDate")
@@ -116,6 +118,8 @@ class get_historical_data():
                             print "Input endDate: " + endDate
                             elm.clear()
                             elm.send_keys(endDate)
+                        else:
+                            print "Out of data range! Will use default date as input: " + endDate_default
                         time.sleep(2)
 #                               break
                 
@@ -177,8 +181,25 @@ def main():
 #    get_stock_data = get_historical_data("goog", startDate, endDate, downloadPath)
  #   get_stock_data = get_historical_data("flws", startDate, endDate, downloadPath)
     stock_name = raw_input("Please enter the Stock Symbol:   ")
-    startDate = raw_input("Please enter the Start Date (mm/dd/yyyy):   ")
-    endDate = raw_input("Please enter the Start Date (mm/dd/yyyy):   ")
+    while 1:
+        while 1:
+            try:
+                startDate = raw_input("Please enter the Start Date (mm/dd/yyyy):   ")
+                input_date = time.strptime(startDate, "%m/%d/%Y" )
+                break
+            except:
+                print "Invalid Date, please input again!" + '\n'
+        while 1:
+            try:
+                endDate = raw_input("Please enter the end Date (mm/dd/yyyy):   ")
+                input_date = time.strptime(endDate, "%m/%d/%Y" )
+                break
+            except:
+                print "Invalid Date, please input again!" + '\n'
+        if (time.strptime(startDate, "%m/%d/%Y" ) <= time.strptime(endDate, "%m/%d/%Y" )):
+            break
+        else:
+            print "'Start' date must be prior to 'End' date! Please Re-enter the Start Date and End Date" + '\n'
     get_stock_data = get_historical_data(stock_name, startDate, endDate, downloadPath)
 
 if __name__ == "__main__":
