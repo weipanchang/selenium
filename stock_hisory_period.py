@@ -46,7 +46,7 @@ class get_historical_data():
         desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
         desiredCapabilities['firefox_profile'] = profile.encoded
         driver = webdriver.Firefox(capabilities=desiredCapabilities)
-        driver.set_page_load_timeout(10)    
+        driver.set_page_load_timeout(15)    
         url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
         try:
             driver.get(url)
@@ -67,98 +67,64 @@ class get_historical_data():
             except:
                 pass
         
-        elm_lists = driver.find_elements_by_tag_name("span")
-        for elm in elm_lists:
-            try:        
-                if elm.text == "Historical Data":
-                    print "click at Historical Data Button"
-                    elm.click()
-                    time.sleep(1)
-                    
-                    len_of_input_elm = 0
-                    while len_of_input_elm < 5:
-                        input_elm_lists = driver.find_elements_by_tag_name("input")
-                        len_of_input_elm = len(input_elm_lists)
-#                        print input_elm_lists
-    #                    input_elm_lists = driver.find_elements_by_tag_name("input")
-                    input_elm = input_elm_lists[4]
-                        
-#                    input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
+        elm = driver.find_element_by_xpath("//span[contains(text(), 'Historical Data')]")    
+        print "click at Historical Data Button"
+        elm.click()
+        time.sleep(1)
+        len_of_input_elm = 0
 
-                    print "click at input button"
-                    input_elm.click()
-                    time.sleep(1)
-                    
-                    elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-                    print "click at max"
-                    elm.click()
-                    time.sleep(1)
-                    
-                    
-                    
-                    elm = driver.find_element_by_name("startDate")
-                    startDate_default =  elm.get_attribute("value")
-#                        print startDate_default
-                    startDate1 = time.strptime(startDate_default , "%m/%d/%Y")
-                    startDate2 = time.strptime(startDate , "%m/%d/%Y")
-                    if (startDate1 < startDate2):
-                        print "Input startDate: " + startDate
-                        elm.clear()
-                        elm.send_keys(startDate)
-                    else:
-                        print "Out of data range! Will use default date as input: " + startDate_default
-                    time.sleep(2)
-                    
-                    elm = driver.find_element_by_name("endDate")
-                    endDate_default =  elm.get_attribute("value")
-#                        print endDate_default
-                    endDate1 = time.strptime(endDate_default , "%m/%d/%Y")
-                    endDate2 = time.strptime(endDate , "%m/%d/%Y")
-                    if (endDate1 > endDate2):
-                        print "Input endDate: " + endDate
-                        elm.clear()
-                        elm.send_keys(endDate)
-                    else:
-                        print "Out of data range! Will use default date as input: " + endDate_default
-                    time.sleep(2)
-#                               break
+        while len_of_input_elm < 5:
+            input_elm_lists = driver.find_elements_by_tag_name("input")
+            len_of_input_elm = len(input_elm_lists)
+        time.sleep(1)
+        input_elm = input_elm_lists[4]
+
+        print "click at input button"
+        input_elm.click()
+        time.sleep(1)
+        
+        elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+        print "click at max"
+        elm.click()
+        time.sleep(1)
+                
+        elm = driver.find_element_by_name("startDate")
+        startDate_default =  elm.get_attribute("value")
+        startDate1 = time.strptime(startDate_default , "%m/%d/%Y")
+        startDate2 = time.strptime(startDate , "%m/%d/%Y")
+        if (startDate1 < startDate2):
+            print "Input startDate: " + startDate
+            elm.clear()
+            elm.send_keys(startDate)
+        else:
+            print "Out of data range! Will use default date as input: " + startDate_default
+        time.sleep(2)
+        
+        elm = driver.find_element_by_name("endDate")
+        endDate_default =  elm.get_attribute("value")
+        endDate1 = time.strptime(endDate_default , "%m/%d/%Y")
+        endDate2 = time.strptime(endDate , "%m/%d/%Y")
+        if (endDate1 > endDate2):
+            print "Input endDate: " + endDate
+            elm.clear()
+            elm.send_keys(endDate)
+        else:
+            print "Out of data range! Will use default date as input: " + endDate_default
+        time.sleep(2)
+
+        button_elm = driver.find_element_by_xpath("//button[@class =' Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)' ]")
+        print "click at Done"
+        button_elm.click()
+        time.sleep(6)      
             
-            # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-            # print "click at max"
-            # elm.click()
-            
-                    button_elm_lists = driver.find_elements_by_tag_name("button")
-                    for button_elm in button_elm_lists:
-                            if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
-                                print "Click at Done"
-                                button_elm.click()
-                                time.sleep(1)                
-                                break
-    #                break                   
-                        # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-                        # print "click at max"
-                        # elm.click()
-            
-            except:
-                pass
-     #   Click at Apply
-        button_elm_lists = driver.find_elements_by_tag_name("button")
-        for button_elm in button_elm_lists:
-            if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)":
-                print "Clikc at Apply"
-                button_elm.click()
-                time.sleep(1)
-                break
-        a_elm_lists = driver.find_elements_by_tag_name("a")
-        for a_elm in a_elm_lists:
-            if a_elm.get_attribute("class") == "Fl(end) Mt(3px) Cur(p)":
-                print "click at download link"
-                # url = a_elm.get_attribute('href')
-                # print url
-                a_elm.click()
-                break
-    #    driver.get(url)
-    #    driver.find_element(By.LINK_TEXT, 'smilechart.xls').click()
+        button_elm = driver.find_element_by_xpath("//button[@class =' Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Fl(end)']")
+        print "clikc at Apply"
+        button_elm.click()
+        time.sleep(10)
+
+        a_elm = driver.find_element_by_xpath("//a[@class = 'Fl(end) Mt(3px) Cur(p)']")
+        print "click at download link"
+        a_elm.click()
         time.sleep(2)
         driver.quit()
 
