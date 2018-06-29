@@ -83,57 +83,57 @@ class get_historical_data():
     #                    input_elm_lists = driver.find_elements_by_tag_name("input")
                     input_elm = input_elm_lists[4]
                         
-                    if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
-    
-                        print "click at input button"
-                        input_elm.click()
-                        time.sleep(1)
-                        
-                        elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-                        print "click at max"
-                        elm.click()
-                        time.sleep(1)
-                        
-                        
-                        
-                        elm = driver.find_element_by_name("startDate")
-                        startDate_default =  elm.get_attribute("value")
+#                    input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
+
+                    print "click at input button"
+                    input_elm.click()
+                    time.sleep(1)
+                    
+                    elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+                    print "click at max"
+                    elm.click()
+                    time.sleep(1)
+                    
+                    
+                    
+                    elm = driver.find_element_by_name("startDate")
+                    startDate_default =  elm.get_attribute("value")
 #                        print startDate_default
-                        startDate1 = time.strptime(startDate_default , "%m/%d/%Y")
-                        startDate2 = time.strptime(startDate , "%m/%d/%Y")
-                        if (startDate1 < startDate2):
-                            print "Input startDate: " + startDate
-                            elm.clear()
-                            elm.send_keys(startDate)
-                        else:
-                            print "Out of data range! Will use default date as input: " + startDate_default
-                        time.sleep(2)
-                        
-                        elm = driver.find_element_by_name("endDate")
-                        endDate_default =  elm.get_attribute("value")
+                    startDate1 = time.strptime(startDate_default , "%m/%d/%Y")
+                    startDate2 = time.strptime(startDate , "%m/%d/%Y")
+                    if (startDate1 < startDate2):
+                        print "Input startDate: " + startDate
+                        elm.clear()
+                        elm.send_keys(startDate)
+                    else:
+                        print "Out of data range! Will use default date as input: " + startDate_default
+                    time.sleep(2)
+                    
+                    elm = driver.find_element_by_name("endDate")
+                    endDate_default =  elm.get_attribute("value")
 #                        print endDate_default
-                        endDate1 = time.strptime(endDate_default , "%m/%d/%Y")
-                        endDate2 = time.strptime(endDate , "%m/%d/%Y")
-                        if (endDate1 > endDate2):
-                            print "Input endDate: " + endDate
-                            elm.clear()
-                            elm.send_keys(endDate)
-                        else:
-                            print "Out of data range! Will use default date as input: " + endDate_default
-                        time.sleep(2)
+                    endDate1 = time.strptime(endDate_default , "%m/%d/%Y")
+                    endDate2 = time.strptime(endDate , "%m/%d/%Y")
+                    if (endDate1 > endDate2):
+                        print "Input endDate: " + endDate
+                        elm.clear()
+                        elm.send_keys(endDate)
+                    else:
+                        print "Out of data range! Will use default date as input: " + endDate_default
+                    time.sleep(2)
 #                               break
-                
-                # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-                # print "click at max"
-                # elm.click()
-                
-                        button_elm_lists = driver.find_elements_by_tag_name("button")
-                        for button_elm in button_elm_lists:
-                                if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
-                                    print "Click at Done"
-                                    button_elm.click()
-                                    time.sleep(1)                
-                                    break
+            
+            # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+            # print "click at max"
+            # elm.click()
+            
+                    button_elm_lists = driver.find_elements_by_tag_name("button")
+                    for button_elm in button_elm_lists:
+                            if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
+                                print "Click at Done"
+                                button_elm.click()
+                                time.sleep(1)                
+                                break
     #                break                   
                         # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
                         # print "click at max"
