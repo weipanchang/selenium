@@ -46,7 +46,7 @@ class get_historical_data():
         desiredCapabilities = DesiredCapabilities.FIREFOX.copy()
         desiredCapabilities['firefox_profile'] = profile.encoded
         driver = webdriver.Firefox(capabilities=desiredCapabilities)
-        driver.set_page_load_timeout(5)    
+        driver.set_page_load_timeout(10)    
         url = "https://finance.yahoo.com/quote/" + stock_name + "?p=" + stock_name + "&.tsrc=fin-srch"
         try:
             driver.get(url)
@@ -74,53 +74,67 @@ class get_historical_data():
                     print "click at Historical Data Button"
                     elm.click()
                     time.sleep(1)
+                    
                     len_of_input_elm = 0
-    
                     while len_of_input_elm < 5:
                         input_elm_lists = driver.find_elements_by_tag_name("input")
                         len_of_input_elm = len(input_elm_lists)
-    
-                    for input_elm in input_elm_lists:
+#                        print input_elm_lists
+    #                    input_elm_lists = driver.find_elements_by_tag_name("input")
+                    input_elm = input_elm_lists[4]
                         
-                        if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
+                    if input_elm.get_attribute("class") == "C(t) O(n):f Tsh($actionBlueTextShadow) Bd(n) Bgc(t) Fz(14px) Pos(r) T(-1px) Bd(n):f Bxsh(n):f Cur(p) W(190px)":
     
-                            print "click at input button"
-                            input_elm.click()
-                            time.sleep(1)
-                            
-                            elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-                            print "click at max"
-                            elm.click()
-                            
-                            
-                            
-                            elm = driver.find_element_by_name("startDate")
-                            print "Input startDate"
+                        print "click at input button"
+                        input_elm.click()
+                        time.sleep(1)
+                        
+                        elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+                        print "click at max"
+                        elm.click()
+                        time.sleep(1)
+                        
+                        
+                        
+                        elm = driver.find_element_by_name("startDate")
+                        startDate_default =  elm.get_attribute("value")
+                        print startDate_default
+                        startDate1 = time.strptime(startDate_default , "%m/%d/%Y")
+                        startDate2 = time.strptime(startDate , "%m/%d/%Y")
+                        if (startDate1 < startDate2):
+                            print "Input startDate: " + startDate
                             elm.clear()
                             elm.send_keys(startDate)
-                            
-                            elm = driver.find_element_by_name("endDate")
-                            print "Input endDate"
+                        time.sleep(2)
+                        
+                        elm = driver.find_element_by_name("endDate")
+                        endDate_default =  elm.get_attribute("value")
+                        print endDate_default
+                        endDate1 = time.strptime(endDate_default , "%m/%d/%Y")
+                        endDate2 = time.strptime(endDate , "%m/%d/%Y")
+                        if (endDate1 > endDate2):
+                            print "Input endDate: " + endDate
                             elm.clear()
                             elm.send_keys(endDate)
-                            break
-                    
-                    # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-                    # print "click at max"
-                    # elm.click()
-                    
-                    button_elm_lists = driver.find_elements_by_tag_name("button")
-                    for button_elm in button_elm_lists:
-                            if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
-                                print "Click at Done"
-                                button_elm.click()
-                                time.sleep(1)                
-                                break
-                    
-                    # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
-                    # print "click at max"
-                    # elm.click()
-        
+                        time.sleep(2)
+#                               break
+                
+                # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+                # print "click at max"
+                # elm.click()
+                
+                        button_elm_lists = driver.find_elements_by_tag_name("button")
+                        for button_elm in button_elm_lists:
+                                if button_elm.get_attribute("class") == " Bgc($c-fuji-blue-1-b) Bdrs(3px) Px(20px) Miw(100px) Whs(nw) Fz(s) Fw(500) C(white) Bgc($actionBlueHover):h Bd(0) D(ib) Cur(p) Td(n)  Py(9px) Miw(80px)! Fl(start)":
+                                    print "Click at Done"
+                                    button_elm.click()
+                                    time.sleep(1)                
+                                    break
+    #                break                   
+                        # elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
+                        # print "click at max"
+                        # elm.click()
+            
             except:
                 pass
      #   Click at Apply
@@ -154,7 +168,7 @@ def main():
     # get_stock_data = get_historical_data("goog",  downloadPath)       
 
     startDate = '6/28/2005'
-    endDate = '6/28/2018'
+    endDate = '6/28/2017'
 #    stock_name = raw_input("Please enter the Stock Symbol:   ")
 #    get_stock_data = get_historical_data(stock_name, startDate, endDate, downloadPath)
 #    get_stock_data = get_historical_data("amzn", startDate, endDate, downloadPath)
