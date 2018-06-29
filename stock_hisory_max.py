@@ -87,17 +87,6 @@ class get_historical_data():
                              print "click at input button"
                              input_elm.click()
                              time.sleep(1)
-    
-                             # elm = driver.find_element_by_name("startDate")
-                             # print "Input startDate"
-                             # elm.clear()
-                             # elm.send_keys(startDate)
-                             # 
-                             # elm = driver.find_element_by_name("endDate")
-                             # print "Input endDate"
-                             # elm.clear()
-                             # elm.send_keys(endDate)
-                             # break
                     
                     elm = driver.find_element_by_xpath("//div[@class='Ta(c) C($gray)']/span[@data-value='MAX']")
                     print "click at max"
@@ -139,9 +128,9 @@ def main():
     downloadPath = '/home/wchang/Downloads/data'
  
  #   get_stock_data = get_historical_data("amzn",  downloadPath)
-    get_stock_data = get_historical_data("adbe",  downloadPath)
+ #   get_stock_data = get_historical_data("adbe",  downloadPath)
  #   get_stock_data = get_historical_data("aapl",  downloadPath)
- #   get_stock_data = get_historical_data("goog",  downloadPath)       
+    get_stock_data = get_historical_data("goog",  downloadPath)       
 
     # startDate = '6/28/2005'
     # endDate = '6/28/2018'
